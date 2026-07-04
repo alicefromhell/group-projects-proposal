@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float _verticalVelocity = 0f;
     private float _gravity = 9.81f;
 
+    [SerializeField] private Transform _cameraTransform;
     [SerializeField] private CharacterController _Controller;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotationSpeed = 100f;
@@ -17,7 +18,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 moveDirection = new Vector3(_moveInput.x, 0f, _moveInput.y) * _moveSpeed;
+        Vector3 forward = _cameraTransform.forward;
+        Vector3 right = _cameraTransform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = (forward * _moveInput.y + right * _moveInput.x) * _moveSpeed;
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
