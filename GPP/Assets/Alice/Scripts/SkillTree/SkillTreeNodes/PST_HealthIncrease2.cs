@@ -24,10 +24,12 @@ public class PST_HealthIncrease2 : SkillTreeInfiniteUpgrade
 
     }
 
-    public override void OnUpgraded()
+    public override bool OnUpgraded()
     {
-        base.OnUpgraded();
+        if (!base.OnUpgraded())
+            return false;
 
         Debug.Log("Health increased by 10!");
+        return true;
     }
 }

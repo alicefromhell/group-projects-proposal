@@ -36,21 +36,16 @@ public class SkillTreeBaseClass : MonoBehaviour
         }
     }
 
-    virtual public void OnUpgraded()
+    public virtual bool OnUpgraded()
     {
-        //no player manager yet
-        /*
-        if (PlayerManager.Instance.Money <= Cost)
+        if (PlayerInventoryManager.Instance.GetResourceAmount(ResourceType.Money) < Cost)
         {
             Debug.Log("Not enough money to upgrade!");
-            return;
+            return false;
         }
-        else
-        {
-            PlayerManager.Instance.Money -= Cost;
-        }
-        */
 
+        PlayerInventoryManager.Instance.RemoveMoney(Cost);
+        return true;
     }
 
     private void StateManager()
@@ -98,13 +93,15 @@ public class SkillTreeBaseUpgrade : SkillTreeBaseClass
         base.OnClicked();
     }
 
-    public override void OnUpgraded()
+    public override bool OnUpgraded()
     {
-        base.OnUpgraded();
+        if (!base.OnUpgraded())
+            return false;
 
-        //single upgrade, so the next upgrade is always available if this one is upgraded
         IsUpgraded = true;
         UnlocksNextNode = true;
+
+        return true;
     }
 }
 
@@ -121,9 +118,10 @@ public class SkillTreeMultipleUpgrade : SkillTreeBaseClass
     {
         base.OnClicked();
     }
-    public override void OnUpgraded()
+    public override bool OnUpgraded()
     {
-        base.OnUpgraded();
+        if (!base.OnUpgraded())
+            return false;
 
         //multiple upgrades have 2 conditions,
         //some upgrades need to be maxed out before the next node is unlocked,
@@ -140,6 +138,8 @@ public class SkillTreeMultipleUpgrade : SkillTreeBaseClass
             IsUpgraded = true;
             Debug.Log("Max upgrades reached!");
         }
+
+        return true;
     }
 }
 
@@ -155,9 +155,10 @@ public class SkillTreeInfiniteUpgrade : SkillTreeBaseClass
     {
         base.OnClicked();
     }
-    public override void OnUpgraded()
+    public override bool OnUpgraded()
     {
-        base.OnUpgraded();
+        if (!base.OnUpgraded())
+            return false;
 
         //infinite upgrades, so the next upgrade is always available if this one is upgraded once
         UnlocksNextNode = true;
@@ -165,5 +166,6 @@ public class SkillTreeInfiniteUpgrade : SkillTreeBaseClass
         //increase the cost for the next upgrade
         Cost = Mathf.FloorToInt(Cost * CostMultiplier);
 
+        return true;
     }
 }

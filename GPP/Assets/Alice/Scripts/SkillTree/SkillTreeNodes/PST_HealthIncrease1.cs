@@ -19,13 +19,15 @@ public class PST_HealthIncrease1 : SkillTreeBaseUpgrade
         if (!IsUpgraded) { OnUpgraded(); }
     }
 
-    public override void OnUpgraded()
+    public override bool OnUpgraded()
     {
-        base.OnUpgraded();
+        if (!base.OnUpgraded())
+            return false;
 
         Debug.Log("Health increased by 10!");
         // Increase health by 10
 
+        return true;
     }
 }
 
