@@ -28,9 +28,6 @@ public class PST_HealthIncrease2 : SkillTreeInfiniteUpgrade
     {
         base.OnUpgraded();
 
-        IsUpgraded = true;
-        Cost = Mathf.FloorToInt(Cost * CostMultiplier);
-
         Debug.Log("Health increased by 10!");
     }
 }
