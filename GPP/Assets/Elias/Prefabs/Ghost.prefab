@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1017936384892825849}
   - component: {fileID: 8470689984665132571}
   - component: {fileID: 6898492627523076552}
+  - component: {fileID: 4374918746308114221}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -115,6 +116,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4374918746308114221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34428958849313512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7603b051a8546924ba4bf6c432cf44bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  moveSpeed: 3
+  damage: 5
+  attackCooldown: 1.5
+  maxHealth: 20
+  attackRange: 2
+  cost: 1
+  prefab: {fileID: 34428958849313512}
 --- !u!1 &224887221332698400
 GameObject:
   m_ObjectHideFlags: 0
