@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8470689984665132571}
   - component: {fileID: 6898492627523076552}
   - component: {fileID: 4374918746308114221}
+  - component: {fileID: 6267967539723704775}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +110,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -134,7 +135,19 @@ MonoBehaviour:
   maxHealth: 20
   attackRange: 2
   cost: 1
-  prefab: {fileID: 34428958849313512}
+--- !u!114 &6267967539723704775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34428958849313512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9273265c7d659da458e37ba5f3b5ced6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  _slider: {fileID: 1453266789739007136}
 --- !u!1 &224887221332698400
 GameObject:
   m_ObjectHideFlags: 0
