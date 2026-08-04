@@ -1,0 +1,177 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BuilderScript : MonoBehaviour
+{
+    [SerializeField] private GameObject _builderUI;
+    [SerializeField] private Camera _buildCamera;
+
+    [Header("Building Spots")]
+    [SerializeField] private List<GameObject> _buildingSpots;
+
+    [Header("Building Prefabs")]
+    [SerializeField] private GameObject _livingTurretPrefab;
+    [SerializeField] private GameObject _deadTurretPrefab;
+    [SerializeField] private GameObject _quantumTurretPrefab;
+    private GameObject _currentTurretPrefab;
+
+    [Header("Turret UI")]
+    [SerializeField] private TMP_Text _livingTurretAmountText;
+    [SerializeField] private Image _livingTurretImage;
+
+    [SerializeField] private TMP_Text _deadTurretAmountText;
+    [SerializeField] private Image _deadTurretImage;
+
+    [SerializeField] private TMP_Text _quantumTurretAmountText;
+    [SerializeField] private Image _quantumTurretImage;
+
+
+    public void BuildTurret(TurretType turretType, int spotIndex)
+    {
+        if (spotIndex < 0 || spotIndex >= _buildingSpots.Count)
+        {
+            Debug.LogError("Invalid building spot index.");
+            return;
+        }
+        GameObject turretPrefab = null;
+        switch (turretType)
+        {
+            case TurretType.LivingTurret:
+                if (!(TurretInventoryManager.Instance.GetTurretAmount(TurretType.LivingTurret) >= 1))
+                {
+                    Debug.LogError("Not enough Living Turrets in inventory.");
+                    return;
+                }
+                turretPrefab = _livingTurretPrefab;
+                TurretInventoryManager.Instance.RemoveTurret(TurretType.LivingTurret, 1);
+                break;
+            case TurretType.DeadTurret:
+                if (!(TurretInventoryManager.Instance.GetTurretAmount(TurretType.DeadTurret) >= 1))
+                {
+                    Debug.LogError("Not enough Dead Turrets in inventory.");
+                    return;
+                }
+                turretPrefab = _deadTurretPrefab;
+                TurretInventoryManager.Instance.RemoveTurret(TurretType.DeadTurret, 1);
+                break;
+            case TurretType.QuantumTurret:
+                if (!(TurretInventoryManager.Instance.GetTurretAmount(TurretType.QuantumTurret) >= 1))
+                {
+                    Debug.LogError("Not enough Quantum Turrets in inventory.");
+                    return;
+                }
+                turretPrefab = _quantumTurretPrefab;
+                TurretInventoryManager.Instance.RemoveTurret(TurretType.QuantumTurret, 1);
+                break;
+            default:
+                Debug.LogError("Invalid turret type.");
+                return;
+        }
+        Instantiate(turretPrefab, _buildingSpots[spotIndex].transform.position, Quaternion.identity);
+    }
+
+    public void RemoveTurret(int spotIndex) //missing logic to add turret back to inventory when removed
+    {
+        if (spotIndex < 0 || spotIndex >= _buildingSpots.Count)
+        {
+            Debug.LogError("Invalid building spot index.");
+            return;
+        }
+        Transform spotTransform = _buildingSpots[spotIndex].transform;
+        if (spotTransform.childCount > 0)
+        {
+            Destroy(spotTransform.GetChild(0).gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        _livingTurretAmountText.text = $"Living Turrets: {TurretInventoryManager.Instance.GetTurretAmount(TurretType.LivingTurret)}";
+        _deadTurretAmountText.text = $"Dead Turrets: {TurretInventoryManager.Instance.GetTurretAmount(TurretType.DeadTurret)}";
+        _quantumTurretAmountText.text = $"Quantum Turrets: {TurretInventoryManager.Instance.GetTurretAmount(TurretType.QuantumTurret)}";
+
+        //set the color of the selected turret image to green, set the color of the unselected turret images to white
+        if (_currentTurretPrefab == _livingTurretPrefab)
+        {
+            _livingTurretImage.color = Color.green;
+            _deadTurretImage.color = Color.white;
+            _quantumTurretImage.color = Color.white;
+        }
+        else if (_currentTurretPrefab == _deadTurretPrefab)
+        {
+            _livingTurretImage.color = Color.white;
+            _deadTurretImage.color = Color.green;
+            _quantumTurretImage.color = Color.white;
+        }
+        else if (_currentTurretPrefab == _quantumTurretPrefab)
+        {
+            _livingTurretImage.color = Color.white;
+            _deadTurretImage.color = Color.white;
+            _quantumTurretImage.color = Color.green;
+        }
+
+    }
+
+    public void OpenBuilder()
+    {
+        _builderUI.SetActive(true);
+        _buildCamera.enabled = true;
+        //any other camera in scene should be disabled, this is a temporary solution until we have a camera manager
+        FindAnyObjectByType<Camera>().enabled = false;
+    }
+
+    public void CloseBuilder()
+    {
+        _builderUI.SetActive(false);
+
+        FindAnyObjectByType<Camera>().enabled = true;
+        _buildCamera.enabled = false;
+    }
+
+    #region Button Methods
+
+    public void SelectLivingTurret()
+    {
+        _currentTurretPrefab = _livingTurretPrefab;
+    }
+    public void SelectDeadTurret()
+    {
+        _currentTurretPrefab = _deadTurretPrefab;
+    }
+    public void SelectQuantumTurret()
+    {
+        _currentTurretPrefab = _quantumTurretPrefab;
+    }
+
+    //ensure buttons spaces are set up to call this method with the correct spot index
+    public void BuildSelectedTurret(int spotIndex)
+    {
+        if (_currentTurretPrefab == null)
+        {
+            Debug.LogError("No turret selected.");
+            return;
+        }
+        TurretType selectedTurretType = TurretType.LivingTurret; // Default to LivingTurret
+        if (_currentTurretPrefab == _livingTurretPrefab)
+        {
+            selectedTurretType = TurretType.LivingTurret;
+        }
+        else if (_currentTurretPrefab == _deadTurretPrefab)
+        {
+            selectedTurretType = TurretType.DeadTurret;
+        }
+        else if (_currentTurretPrefab == _quantumTurretPrefab)
+        {
+            selectedTurretType = TurretType.QuantumTurret;
+        }
+        BuildTurret(selectedTurretType, spotIndex);
+    }
+
+    public void RemoveTurretFromSpot(int spotIndex)
+    {
+        RemoveTurret(spotIndex);
+    }
+    #endregion
+}
