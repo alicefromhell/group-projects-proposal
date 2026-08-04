@@ -39,8 +39,8 @@ public class TurretInventoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _turretInventory.Add(new TurretEntry { TurretType = TurretType.LivingTurret, Amount = 0 });
-        _turretInventory.Add(new TurretEntry { TurretType = TurretType.DeadTurret, Amount = 0 });
+        _turretInventory.Add(new TurretEntry { TurretType = TurretType.LivingTurret, Amount = 1 });
+        _turretInventory.Add(new TurretEntry { TurretType = TurretType.DeadTurret, Amount = 1 });
         _turretInventory.Add(new TurretEntry { TurretType = TurretType.QuantumTurret, Amount = 0 });
     }
 

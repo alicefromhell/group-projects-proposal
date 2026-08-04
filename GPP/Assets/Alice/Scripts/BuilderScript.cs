@@ -7,6 +7,7 @@ public class BuilderScript : MonoBehaviour
 {
     [SerializeField] private GameObject _builderUI;
     [SerializeField] private Camera _buildCamera;
+    [SerializeField] private Camera _mainCamera;
 
     [Header("Building Spots")]
     [SerializeField] private List<GameObject> _buildingSpots;
@@ -116,18 +117,26 @@ public class BuilderScript : MonoBehaviour
 
     public void OpenBuilder()
     {
+        if(_builderUI.activeSelf)
+        {
+            CloseBuilder();
+            return;
+        }
+
         _builderUI.SetActive(true);
-        _buildCamera.enabled = true;
+        _buildCamera.gameObject.SetActive(true);
+        _mainCamera.gameObject.SetActive(false);
         //any other camera in scene should be disabled, this is a temporary solution until we have a camera manager
-        FindAnyObjectByType<Camera>().enabled = false;
     }
 
     public void CloseBuilder()
     {
+        
+
         _builderUI.SetActive(false);
 
-        FindAnyObjectByType<Camera>().enabled = true;
-        _buildCamera.enabled = false;
+        _mainCamera.gameObject.SetActive(true);
+        _buildCamera.gameObject.SetActive(false);
     }
 
     #region Button Methods
