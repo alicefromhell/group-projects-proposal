@@ -15,14 +15,21 @@ public class Inventory : MonoBehaviour
         public GameObject BuildingPrefab => buildingPrefab;
     }
 
+    [SerializeField] int _money = 200;
     [SerializeField] private VisualTreeAsset _slotTemplate;
     [SerializeField] private BuildingSlotData[] _buildingSlotData;
-    private VisualElement root;
+
+    private VisualElement _root;
+    private Label _moneyLabel;
 
     void OnEnable()
     {
-        root = GetComponent<UIDocument>().rootVisualElement;
-        var grid = root.Q<VisualElement>("Inventory");
+        _root = GetComponent<UIDocument>().rootVisualElement;
+
+        var grid = _root.Q<VisualElement>("Inventory");
+
+        _moneyLabel = _root.Q<Label>("Money");
+        _moneyLabel.text = _money.ToString();
 
         for (int i = 0; i < _buildingSlotData.Length; i++)
         {

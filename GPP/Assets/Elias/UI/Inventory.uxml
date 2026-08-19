@@ -1,3 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="Inventory" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.502); top: 80%; position: relative; height: 100px; width: 75%; left: 12.5%; bottom: auto; flex-direction: row; flex-wrap: wrap; background-size: 100% 100%;"/>
+    <ui:Label text="0" name="Money" style="font-size: 30px; bottom: 15%;"/>
 </ui:UXML>
