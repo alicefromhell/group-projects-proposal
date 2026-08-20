@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
             cost.text = _buildingSlotData[i].Cost.ToString();
 
             int index = i;
-            slot.RegisterCallback<ClickEvent>(evt => SpawnBuilding(index));
+            slot.RegisterCallback<PointerDownEvent>(evt => SpawnBuilding(index));
 
             grid.Add(slot);
         }
