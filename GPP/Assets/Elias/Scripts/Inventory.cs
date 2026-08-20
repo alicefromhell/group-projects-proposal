@@ -26,9 +26,7 @@ public class Inventory : MonoBehaviour
 
     private VisualElement _root;
     private Label _moneyLabel;
-    private bool _HoveringOverInv = false;
 
-    private int _totalMoney;
     private int _costBuilding = -1;
     private GameObject _currentBuilding;
 
@@ -38,9 +36,6 @@ public class Inventory : MonoBehaviour
         _root = GetComponent<UIDocument>().rootVisualElement;
 
         var grid = _root.Q<VisualElement>("Inventory");
-
-        grid.RegisterCallback<PointerEnterEvent>(evt => _HoveringOverInv = true);
-        grid.RegisterCallback<PointerLeaveEvent>(evt => _HoveringOverInv = false);
 
         _moneyLabel = _root.Q<Label>("Money");
         _moneyLabel.text = _money.ToString();
