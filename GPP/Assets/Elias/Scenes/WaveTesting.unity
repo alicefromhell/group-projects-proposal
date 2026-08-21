@@ -273,6 +273,11 @@ MonoBehaviour:
       pos: 2
       amount: 3
       interval: 0
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 5
+      interval: 0
   _EnemiesParent: {fileID: 2001382886}
 --- !u!4 &166888396
 Transform:

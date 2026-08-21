@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Entity : MonoBehaviour
+public class Entity : Subject
 {
     [SerializeField] private Slider _slider;
     [SerializeField] float _MaxHealth = 100;
@@ -17,6 +17,12 @@ public class Entity : MonoBehaviour
 
         if (_slider.value <= 0)
         {
+            if(this.GetComponent<Enemy>())
+            {
+                NotifyObservers("EnemyKilled");
+                RemoveAllObservers();
+            }
+
             EntityKilled();
         }
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Waves : MonoBehaviour
+public class Waves : MonoBehaviour, IObserver
 {
     public enum SpawnPos
     {
@@ -17,7 +17,6 @@ public class Waves : MonoBehaviour
         [SerializeField] public GameObject enemy;
         [SerializeField] public SpawnPos pos;
         [SerializeField] public int amount;
-        [SerializeField] public float interval;
     }
 
     [System.Serializable]
@@ -31,8 +30,7 @@ public class Waves : MonoBehaviour
 
     private int _WaveIndex = -1;
     private int _EnemyIndex = -1;
-    private float _CurrentInterval = 0;
-    private float _Time;
+    private int _EnemiesAlive = 0;
     private Button _SpawnButton;
 
     private void Start()
@@ -49,10 +47,6 @@ public class Waves : MonoBehaviour
             return;
 
         if (_Waves[_WaveIndex].enemiesToSpawn.Length == _EnemyIndex)
-            return;
-
-        _Time += Time.deltaTime;
-        if (_Time < _CurrentInterval)
             return;
 
         System.Random rnd = new System.Random();
@@ -87,11 +81,12 @@ public class Waves : MonoBehaviour
 
             var enemy = Instantiate(enemyInfo.enemy);
             enemy.transform.position = new Vector3(x, 0, z);
+            enemy.GetComponent<Entity>().AddObserver(this);
             enemy.transform.SetParent(_EnemiesParent.transform, false);
+            _EnemiesAlive++;
         }
 
         _EnemyIndex++;
-        _CurrentInterval = enemyInfo.interval;
     }
 
     void SpawnNextWave()
@@ -104,5 +99,23 @@ public class Waves : MonoBehaviour
         _EnemyIndex = 0;
 
         _SpawnButton.SetEnabled(false);
+    }
+
+    void EnemyKilled()
+    {
+        _EnemiesAlive--;
+
+        if (_EnemiesAlive <= 0)
+        {
+            _SpawnButton.SetEnabled(true);
+        }
+    }
+
+    public void OnNotify(string action)
+    {
+        if(action == "EnemyKilled")
+        {
+            EnemyKilled();
+        }
     }
 }
