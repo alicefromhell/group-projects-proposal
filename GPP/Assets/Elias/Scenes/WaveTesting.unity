@@ -119,6 +119,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15075900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2096607237569142983, guid: bbf64a6b74f821842b120d44cd8da27f, type: 3}
+  m_PrefabInstance: {fileID: 544754994057502790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &15075906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15075900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154d28b5c3a7e7438382a336f720246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core
+  _EnemiesParent: {fileID: 2001382886}
+  _WaveSystem: {fileID: 166888394}
 --- !u!1 &143661509
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,16 +287,13 @@ MonoBehaviour:
     - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
       pos: 0
       amount: 2
-      interval: 3
     - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
       pos: 2
       amount: 3
-      interval: 0
   - enemiesToSpawn:
     - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
       pos: 2
       amount: 5
-      interval: 0
   _EnemiesParent: {fileID: 2001382886}
 --- !u!4 &166888396
 Transform:
@@ -2479,6 +2495,10 @@ PrefabInstance:
       propertyPath: m_ProvidesContacts
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 854216379409882440, guid: bbf64a6b74f821842b120d44cd8da27f, type: 3}
+      propertyPath: _MaxHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2096607237569142983, guid: bbf64a6b74f821842b120d44cd8da27f, type: 3}
       propertyPath: m_Name
       value: Core
@@ -2546,7 +2566,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2096607237569142983, guid: bbf64a6b74f821842b120d44cd8da27f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 15075906}
   m_SourcePrefab: {fileID: 100100000, guid: bbf64a6b74f821842b120d44cd8da27f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

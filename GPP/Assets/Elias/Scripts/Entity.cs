@@ -17,9 +17,14 @@ public class Entity : Subject
 
         if (_slider.value <= 0)
         {
-            if(this.GetComponent<Enemy>())
+            if(GetComponent<Enemy>())
             {
                 NotifyObservers("EnemyKilled");
+                RemoveAllObservers();
+            }
+            if(GetComponent<Core>())
+            {
+                NotifyObservers("CoreDestroyed");
                 RemoveAllObservers();
             }
 
