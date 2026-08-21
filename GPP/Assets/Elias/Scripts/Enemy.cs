@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 1.5f;
     [SerializeField] private int maxHealth = 20;
     [SerializeField] private float attackRange = 2f;
+    [SerializeField] private NavMeshAgent _agent;
 
     //If we ever want to do infinite rounds we can use the cost to determine what to spawn
     [SerializeField] private int cost = 1;
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Chase()
     {
-        MoveTowards(target.transform.position, moveSpeed);
+        _agent.SetDestination(target.transform.position);
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6898492627523076552}
   - component: {fileID: 4374918746308114221}
   - component: {fileID: 6267967539723704775}
+  - component: {fileID: 7339715336447339530}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -134,6 +135,7 @@ MonoBehaviour:
   attackCooldown: 1.5
   maxHealth: 20
   attackRange: 2
+  _agent: {fileID: 7339715336447339530}
   cost: 1
 --- !u!114 &6267967539723704775
 MonoBehaviour:
@@ -148,6 +150,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
   _slider: {fileID: 1453266789739007136}
+  _MaxHealth: 100
+--- !u!195 &7339715336447339530
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34428958849313512}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &224887221332698400
 GameObject:
   m_ObjectHideFlags: 0
