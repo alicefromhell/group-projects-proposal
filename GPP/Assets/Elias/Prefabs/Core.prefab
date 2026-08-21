@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core
   _slider: {fileID: 3997791117576660701}
+  _MaxHealth: 500
 --- !u!1 &4469607900493234118
 GameObject:
   m_ObjectHideFlags: 0

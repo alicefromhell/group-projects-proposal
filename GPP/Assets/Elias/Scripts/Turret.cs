@@ -21,7 +21,10 @@ public class Turret : MonoBehaviour
 
         if (_enemyTarget != null)
         {
-            _Shooter.transform.LookAt(_enemyTarget.transform.position);
+            Vector3 enemyPos = _enemyTarget.transform.position;
+            Vector3 rotateEnemie = new Vector3(enemyPos.x, transform.position.y, enemyPos.z);
+
+            _Shooter.transform.LookAt(rotateEnemie);
 
             if(_fireCooldown >= _fireRate)
             {
