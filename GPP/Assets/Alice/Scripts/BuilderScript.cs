@@ -175,7 +175,7 @@ public class BuilderScript : MonoBehaviour
         {
             selectedTurretType = TurretType.QuantumTurret;
         }
-        BuildTurret(selectedTurretType, spotIndex);
+        BuildTurret(selectedTurretType, spotIndex-1);
     }
 
     public void RemoveTurretFromSpot(int spotIndex)
