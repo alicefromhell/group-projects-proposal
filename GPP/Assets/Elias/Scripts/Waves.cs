@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -27,11 +28,15 @@ public class Waves : MonoBehaviour, IObserver
 
     [SerializeField] private Wave[] _Waves;
     [SerializeField] GameObject _EnemiesParent;
+    [SerializeField] private float _autoStartTimer = 8f;
+    [SerializeField] private TMP_Text _timer;
 
     private int _WaveIndex = -1;
     private int _EnemyIndex = -1;
     private int _EnemiesAlive = 0;
     private Button _SpawnButton;
+
+    private float _timerValue;
 
     private void Start()
     {
@@ -39,10 +44,23 @@ public class Waves : MonoBehaviour, IObserver
 
         _SpawnButton = root.Q<Button>();
         _SpawnButton.clicked += SpawnNextWave;
+
+        _timerValue = 15;
     }
 
     void Update()
     {
+
+        if (_timerValue > 0)
+        {
+            _timerValue -= Time.deltaTime;
+            _timer.text = "Wave Starts in: " + Mathf.RoundToInt(_timerValue).ToString();
+            if (_timerValue <= 0)
+            {
+                SpawnNextWave();
+            }
+        }
+
         if (_WaveIndex == -1)
             return;
 
@@ -108,6 +126,7 @@ public class Waves : MonoBehaviour, IObserver
         if (_EnemiesAlive <= 0)
         {
             _SpawnButton.SetEnabled(true);
+            _timerValue = _autoStartTimer;
         }
     }
 
