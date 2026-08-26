@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum ResourceType
@@ -35,6 +36,8 @@ public class PlayerInventoryManager : MonoBehaviour
     [SerializeField]
     public List<ResourceEntry> Resources = new List<ResourceEntry>();
 
+    [SerializeField] private TMP_Text _moneyText;
+
     public int GetResourceAmount(ResourceType resourceType)
     {
         switch (resourceType)
@@ -48,9 +51,41 @@ public class PlayerInventoryManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Update the money text UI
+        _moneyText.text = $"Money: {GetResourceAmount(ResourceType.Money)}";
+    }
+
     private void Start()
     {
         Resources.Add(new ResourceEntry { ResourceType = ResourceType.Money, Amount = 0 });
+    }
+
+    public void AddResource(ResourceType resourceType, int amount)
+    {
+        int index = Resources.FindIndex(r => r.ResourceType == resourceType);
+        if (index != -1)
+        {
+            var entry = Resources[index];
+            entry.Amount += amount;
+            Resources[index] = entry;
+        }
+        else
+        {
+            Resources.Add(new ResourceEntry { ResourceType = resourceType, Amount = amount });
+        }
+    }
+    
+    public void RemoveResource(ResourceType resourceType, int amount)
+    {
+        int index = Resources.FindIndex(r => r.ResourceType == resourceType);
+        if (index != -1)
+        {
+            var entry = Resources[index];
+            entry.Amount -= amount;
+            Resources[index] = entry;
+        }
     }
 
     public void AddMoney(int amount)

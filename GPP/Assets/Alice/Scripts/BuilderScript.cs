@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BuilderScript : MonoBehaviour
 {
@@ -112,7 +113,31 @@ public class BuilderScript : MonoBehaviour
             _deadTurretImage.color = Color.white;
             _quantumTurretImage.color = Color.green;
         }
-
+        //set the color of any turret with 0 amount in inventory to red
+        if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.LivingTurret) <= 0)
+        {
+            _livingTurretImage.color = Color.red; 
+        }
+        else if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.LivingTurret) > 0 && _currentTurretPrefab != _livingTurretPrefab)
+        {
+            _livingTurretImage.color = Color.white;
+        }
+        if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.DeadTurret) <= 0)
+        {
+            _deadTurretImage.color = Color.red;
+        }
+        else if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.DeadTurret) > 0 && _currentTurretPrefab != _deadTurretPrefab)
+        {
+            _deadTurretImage.color = Color.white;
+        }
+        if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.QuantumTurret) <= 0)
+        {
+            _quantumTurretImage.color = Color.red;
+        }
+        else if (TurretInventoryManager.Instance.GetTurretAmount(TurretType.QuantumTurret) > 0 && _currentTurretPrefab != _quantumTurretPrefab)
+        {
+            _quantumTurretImage.color = Color.white;
+        }
     }
 
     public void OpenBuilder()
@@ -175,7 +200,31 @@ public class BuilderScript : MonoBehaviour
         {
             selectedTurretType = TurretType.QuantumTurret;
         }
-        BuildTurret(selectedTurretType, spotIndex-1);
+
+        int index = spotIndex - 1;
+        if (index < 0 || index >= _buildingSpots.Count)
+        {
+            Debug.LogError("Invalid building spot index.");
+            return;
+        }
+
+        // Check inventory before attempting to build
+        if (TurretInventoryManager.Instance.GetTurretAmount(selectedTurretType) < 1)
+        {
+            Debug.LogError("Not enough turrets in inventory.");
+            return;
+        }
+
+        BuildTurret(selectedTurretType, index);
+
+        // Disable the UI button that triggered this call so the player can't build again on the same spot
+        var clicked = EventSystem.current?.currentSelectedGameObject;
+        if (clicked != null)
+        {
+            var btn = clicked.GetComponent<Button>();
+            if (btn != null)
+                btn.interactable = false;
+        }
     }
 
     public void RemoveTurretFromSpot(int spotIndex)

@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
     [SerializeField] private int _damage = 50;
+    [SerializeField] private float _travelDistance = 25f;
 
     private float _movementTime = 0f;
 
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour
 
         transform.position += _BulletDirection * _speed * Time.deltaTime;
 
-        if(_movementTime > 5f)
+        if(_movementTime > _travelDistance)
         {
             Destroy(gameObject);
         }
@@ -29,7 +30,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Zombie") || other.CompareTag("Ghost"))
         {
             other.GetComponent<Entity>().DoDamage(_damage);
         }

@@ -229,9 +229,10 @@ GameObject:
   - component: {fileID: 5073590945766581677}
   - component: {fileID: 506910330768154986}
   - component: {fileID: 8452196150253480548}
+  - component: {fileID: 8968731717300633948}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Enemy
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,8 +247,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5687276883612174938}
   m_Father: {fileID: 0}
@@ -285,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5db468c1704e4d3458b99fe5238acc44, type: 2}
+  - {fileID: 2100000, guid: ec3ca2a552b710c43b11af772e4b8a75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -348,7 +349,7 @@ MonoBehaviour:
   damage: 5
   attackCooldown: 1.5
   maxHealth: 20
-  attackRange: 2
+  attackRange: 8
   _agent: {fileID: 8452196150253480548}
   cost: 1
 --- !u!114 &506910330768154986
@@ -387,6 +388,21 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8968731717300633948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636995277425810465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49e6d2e55ad07f40922d007e37f9de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaterialSwapper
+  _activeMaterial: {fileID: 2100000, guid: ec3ca2a552b710c43b11af772e4b8a75, type: 2}
+  _inactiveMaterial: {fileID: 2100000, guid: a2967a23cce5a8e48bf4f9d8a2120e80, type: 2}
+  _activeState: 1
 --- !u!1 &7154313338856923345
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,9 +15,9 @@ public class SkillTreeUImanager : MonoBehaviour
 
     private void Start()
     {
-        _currentCanvas = SkillTreeCanvases.Player;
-        _playerSkillTreeUI.SetActive(true);
-        _baseSkillTreeUI.SetActive(false);
+        _currentCanvas = SkillTreeCanvases.Base;
+        _playerSkillTreeUI.SetActive(false);
+        _baseSkillTreeUI.SetActive(true);
     }
 
     private void CloseCanvas()

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public enum SkillTreeNodeStates
 {
@@ -17,9 +19,15 @@ public class SkillTreeBaseClass : MonoBehaviour
     public bool UnlocksNextNode = false;
     public SkillTreeNodeStates NodeState = SkillTreeNodeStates.Locked;
 
+    public string _buttonName = "Upgrade";
+    private TMP_Text _buttonText;
+
     // operations
     virtual public void Start()
     {
+        _buttonText = GetComponentInChildren<TMP_Text>();
+
+        UpdateButton();
     }
 
     virtual public void Update()
@@ -45,11 +53,14 @@ public class SkillTreeBaseClass : MonoBehaviour
         }
 
         PlayerInventoryManager.Instance.RemoveMoney(Cost);
+        UpdateButton();
         return true;
     }
 
     private void StateManager()
     {
+        Button button = GetComponent<Button>();
+
         switch (NodeState)
         {
             case SkillTreeNodeStates.Locked:
@@ -59,6 +70,11 @@ public class SkillTreeBaseClass : MonoBehaviour
                 }
 
                 //visual feedback for locked nodes can be added here, like changing the color or disabling the button
+
+                if (button != null)
+                {
+                    button.interactable = false;
+                }
 
                 break;
 
@@ -70,14 +86,31 @@ public class SkillTreeBaseClass : MonoBehaviour
 
                 //visual feedback for unlocked nodes can be added here, like changing the color or enabling the button
 
+                if (button != null)
+                {
+                    button.interactable = true;
+                }
+
                 break;
 
             case SkillTreeNodeStates.FullyUpgraded:
 
                 //visual feedback for fully upgraded nodes can be added here, like changing the color or disabling the button
-                
+
+                if (button != null)
+                {
+                    button.interactable = false;
+                }
+
                 break;
 
+        }
+    }
+    private void UpdateButton()
+    {
+        if (_buttonText != null)
+        {
+            _buttonText.text = _buttonName + " (" + Cost + ")";
         }
     }
 }

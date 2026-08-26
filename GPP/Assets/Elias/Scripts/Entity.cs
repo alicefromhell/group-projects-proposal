@@ -20,6 +20,7 @@ public class Entity : Subject
             if(GetComponent<Enemy>())
             {
                 NotifyObservers("EnemyKilled");
+                PlayerInventoryManager.Instance.AddMoney(1);
                 RemoveAllObservers();
             }
             if(GetComponent<Core>())
@@ -30,6 +31,23 @@ public class Entity : Subject
 
             EntityKilled();
         }
+    }
+
+    public void Heal(int healAmount)
+    {
+        _slider.value += healAmount;
+        if (_slider.value > _MaxHealth)
+        {
+            _slider.value = _MaxHealth;
+        }
+    }
+
+    public void AddMaxHealth(int amount)
+    {
+        _MaxHealth += amount;
+        _slider.maxValue = _MaxHealth;
+
+        Heal((int)amount/2);
     }
 
     public virtual void EntityKilled()

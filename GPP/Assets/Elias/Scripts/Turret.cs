@@ -9,7 +9,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject _BulletSpawnPos;
     [SerializeField] private GameObject _Shooter;
     [SerializeField] private GameObject _bulletPrefab;
-    
+    [SerializeField] private float _detectionRange = 55f;
+
     private GameObject _enemyTarget;
     private float _fireCooldown = 0f;
 
@@ -21,6 +22,12 @@ public class Turret : MonoBehaviour
 
         if (_enemyTarget != null)
         {
+            if(Vector3.Distance(transform.position, _enemyTarget.transform.position) > _detectionRange)
+            {
+                _enemyTarget = null;
+                return;
+            }
+
             Vector3 enemyPos = _enemyTarget.transform.position;
             Vector3 rotateEnemie = new Vector3(enemyPos.x, transform.position.y, enemyPos.z);
 
@@ -40,10 +47,16 @@ public class Turret : MonoBehaviour
 
     void SearchForEnemies()
     {
-        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        var zombies = GameObject.FindGameObjectsWithTag("Zombie");
+        var ghosts = GameObject.FindGameObjectsWithTag("Ghost");
 
-        if (enemies.Length == 0)
+        int totalEnemies = zombies.Length + ghosts.Length;
+        if (totalEnemies == 0)
             return;
+
+        GameObject[] enemies = new GameObject[totalEnemies];
+        zombies.CopyTo(enemies, 0);
+        ghosts.CopyTo(enemies, zombies.Length);
 
         GameObject closestEnemy = enemies[0];
 

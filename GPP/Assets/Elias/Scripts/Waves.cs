@@ -54,8 +54,8 @@ public class Waves : MonoBehaviour, IObserver
 
         for(int i = 0; i < enemyInfo.amount; i++)
         {
-            int a = rnd.Next(-25, 25);
-            int b = rnd.Next(10, 25);
+            int a = rnd.Next(30, 55);
+            int b = rnd.Next(30, 55);
             int x = 0;
             int z = 0;
 
@@ -70,7 +70,7 @@ public class Waves : MonoBehaviour, IObserver
                     z = a;
                     break;
                 case SpawnPos.south:
-                    x = a;
+                    x = -a;
                     z = b;
                     break;
                 case SpawnPos.west:
