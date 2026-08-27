@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-public class BST_CoreHealthIncrease2 : SkillTreeInfiniteUpgrade
+public class BST_BuyDeadTurret: SkillTreeBaseUpgrade
 {
-    [SerializeField] private Entity _coreEntity;
-
-    
     public override void Start()
     {
 
 
         base.Start();
 
+
     }
+
     public override void OnClicked()
     {
         base.OnClicked();
@@ -25,9 +24,9 @@ public class BST_CoreHealthIncrease2 : SkillTreeInfiniteUpgrade
         if (!base.OnUpgraded())
             return false;
 
-        Debug.Log("Core Health Increased!");
+        Debug.Log("Dead Turret purchased!");
 
-        _coreEntity.AddMaxHealth(10);
+        TurretInventoryManager.Instance.AddTurret(TurretType.DeadTurret,1);
 
         return true;
     }
