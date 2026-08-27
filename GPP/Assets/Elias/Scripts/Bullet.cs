@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
-    [SerializeField] private int _damage = 50;
+    private int _damage;
     [SerializeField] private float _travelDistance = 25f;
 
     private float _movementTime = 0f;
@@ -14,6 +14,11 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector3 direction)
     {
         _BulletDirection = direction;
+    }
+
+    public void SetDamage(int damage)
+    {
+        _damage = damage;
     }
 
     private void Update()

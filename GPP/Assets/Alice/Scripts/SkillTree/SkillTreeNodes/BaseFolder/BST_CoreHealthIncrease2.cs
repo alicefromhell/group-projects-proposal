@@ -16,7 +16,6 @@ public class BST_CoreHealthIncrease2 : SkillTreeInfiniteUpgrade
     {
         base.OnClicked();
 
-        //no dependancy, is the first node in a branch
         if (!IsUpgraded) { OnUpgraded(); }
     }
 

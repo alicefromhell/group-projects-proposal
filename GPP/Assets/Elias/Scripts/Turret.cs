@@ -5,7 +5,7 @@ public class Turret : MonoBehaviour
 {
     
     [SerializeField] private float _fireRate = 1f;
-
+    [SerializeField] private int _damage = 10;
     [SerializeField] private GameObject _BulletSpawnPos;
     [SerializeField] private GameObject _Shooter;
     [SerializeField] private GameObject _bulletPrefab;
@@ -39,6 +39,7 @@ public class Turret : MonoBehaviour
 
                 Vector3 direction = _enemyTarget.transform.position - _BulletSpawnPos.transform.position;
                 bulletObj.GetComponent<Bullet>().SetDirection(direction);
+                bulletObj.GetComponent<Bullet>().SetDamage(_damage);
 
                 _fireCooldown = 0f;
             }
@@ -72,5 +73,10 @@ public class Turret : MonoBehaviour
         }
 
         _enemyTarget = closestEnemy;
+    }
+
+    public void UpgradeDamage(int damage)
+    {
+        _damage += damage;
     }
 }

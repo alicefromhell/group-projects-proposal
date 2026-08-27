@@ -9,6 +9,17 @@ public enum SkillTreeNodeStates
     FullyUpgraded
 }
 
+// Skill tree node base class.
+// - Dependancy: node that must unlock this one.
+// - UnlocksNextNode: when true, dependent nodes (that list this as Dependancy) become unlocked.
+// - IsUpgraded: true when this node is considered "complete" (e.g. single upgrade done, or repeatable node maxed).
+// - NodeState: drives UI (Locked/Unlocked/FullyUpgraded).
+//
+// Subclasses must set UnlocksNextNode = true at the appropriate time:
+//   - Single-upgrade nodes: immediately after first upgrade.
+//   - Repeatable nodes: either after first upgrade or after max upgrades, depending on design.
+//   - Infinite nodes: typically after first upgrade.
+
 public class SkillTreeBaseClass : MonoBehaviour
 {
     // attributes
@@ -141,7 +152,7 @@ public class SkillTreeBaseUpgrade : SkillTreeBaseClass
 public class SkillTreeMultipleUpgrade : SkillTreeBaseClass
 {
     [SerializeField] public int MaxAmountOfUpgrades;
-    private int _currentUpgradeAmount;
+    public int CurrentUpgradeAmount;
     [SerializeField] public float CostMultiplier;
     public override void Update()
     {
@@ -151,22 +162,22 @@ public class SkillTreeMultipleUpgrade : SkillTreeBaseClass
     {
         base.OnClicked();
     }
+
+    // Base implementation handles payment and incrementing upgrade count.
+    // Derived classes decide when to set UnlocksNextNode = true:
+    //   - Unlock on first upgrade: set UnlocksNextNode = true the first time OnUpgraded() succeeds.
+    //   - Unlock on max: set UnlocksNextNode = true when CurrentUpgradeAmount >= MaxAmountOfUpgrades.
     public override bool OnUpgraded()
     {
         if (!base.OnUpgraded())
             return false;
 
-        //multiple upgrades have 2 conditions,
-        //some upgrades need to be maxed out before the next node is unlocked,
-        //some upgrades unlock the next node after the first upgrade.
-        //Which is why this has to be set on a case by case basis and not in the base class
-
-        if (_currentUpgradeAmount < MaxAmountOfUpgrades)
+        if (CurrentUpgradeAmount < MaxAmountOfUpgrades)
         {
-            _currentUpgradeAmount++;
+            CurrentUpgradeAmount++;
             Cost = Mathf.FloorToInt(Cost * CostMultiplier);
         }
-        else
+        else 
         {
             IsUpgraded = true;
             Debug.Log("Max upgrades reached!");
