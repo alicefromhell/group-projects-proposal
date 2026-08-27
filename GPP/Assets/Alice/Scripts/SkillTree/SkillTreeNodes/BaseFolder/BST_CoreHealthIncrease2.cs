@@ -7,8 +7,10 @@ public class BST_CoreHealthIncrease2 : SkillTreeInfiniteUpgrade
     
     public override void Start()
     {
-        base.Start();
         _buttonName = "Core Health Increase";
+
+
+        base.Start();
 
     }
     public override void OnClicked()

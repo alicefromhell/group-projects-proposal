@@ -7,8 +7,10 @@ public class BST_CoreHealthIncrease1 : SkillTreeBaseUpgrade
     
     public override void Start()
     {
-        base.Start();
         _buttonName = "Core Health Increase";
+
+
+        base.Start();
 
         NodeState = SkillTreeNodeStates.Unlocked;
 

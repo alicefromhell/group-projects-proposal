@@ -4,11 +4,13 @@ public class BST_BuyLivingTurret: SkillTreeBaseUpgrade
 {
     public override void Start()
     {
+        _buttonName = "Buy Living Turret";
+
+
         base.Start();
 
         NodeState = SkillTreeNodeStates.Unlocked;
 
-        _buttonName = "Buy Living Turret";
     }
 
     public override void OnClicked()
