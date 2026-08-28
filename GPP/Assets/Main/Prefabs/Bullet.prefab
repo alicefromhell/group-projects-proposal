@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   _speed: 5
-  _damage: 20
+  _travelDistance: 50
 --- !u!54 &5224656370625403109
 Rigidbody:
   m_ObjectHideFlags: 0

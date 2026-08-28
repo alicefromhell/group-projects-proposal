@@ -72,8 +72,8 @@ public class Waves : MonoBehaviour, IObserver
 
         for(int i = 0; i < enemyInfo.amount; i++)
         {
-            int a = rnd.Next(30, 55);
-            int b = rnd.Next(30, 55);
+            int a = rnd.Next(-30, 55); //random position
+            int b = rnd.Next(40, 55); //distance 
             int x = 0;
             int z = 0;
 

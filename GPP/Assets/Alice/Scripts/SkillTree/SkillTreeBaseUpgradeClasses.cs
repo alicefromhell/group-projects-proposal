@@ -117,7 +117,7 @@ public class SkillTreeBaseClass : MonoBehaviour
 
         }
     }
-    private void UpdateButton()
+    public void UpdateButton()
     {
         if (_buttonText != null)
         {
@@ -176,6 +176,7 @@ public class SkillTreeMultipleUpgrade : SkillTreeBaseClass
         {
             CurrentUpgradeAmount++;
             Cost = Mathf.FloorToInt(Cost * CostMultiplier);
+            base.UpdateButton();
         }
         else 
         {
@@ -209,6 +210,7 @@ public class SkillTreeInfiniteUpgrade : SkillTreeBaseClass
 
         //increase the cost for the next upgrade
         Cost = Mathf.FloorToInt(Cost * CostMultiplier);
+        base.UpdateButton();
 
         return true;
     }

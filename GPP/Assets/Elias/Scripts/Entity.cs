@@ -47,7 +47,7 @@ public class Entity : Subject
         _MaxHealth += amount;
         _slider.maxValue = _MaxHealth;
 
-        Heal((int)amount/2);
+        Heal((int)amount);
     }
 
     public virtual void EntityKilled()

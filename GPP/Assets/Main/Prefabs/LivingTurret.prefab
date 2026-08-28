@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LivingTurret
   _fireRate: 1
+  _damage: 50
   _BulletSpawnPos: {fileID: 5082258233186726367}
   _Shooter: {fileID: 7044106043935337826}
   _bulletPrefab: {fileID: 3943496813208738246, guid: d8236e3816fb899459c309df2bfdef36, type: 3}

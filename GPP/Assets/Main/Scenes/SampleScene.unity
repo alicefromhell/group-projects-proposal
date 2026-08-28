@@ -5530,6 +5530,102 @@ MonoBehaviour:
     - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
       pos: 2
       amount: 5
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 1
+      amount: 4
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 3
+      amount: 5
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 1
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 0
+      amount: 10
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 0
+      amount: 3
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 0
+      amount: 5
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 2
+      amount: 3
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 3
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 3
+      amount: 3
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 1
+      amount: 3
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 0
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 1
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 3
+      amount: 10
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 10
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 0
+      amount: 10
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 1
+      amount: 10
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 3
+      amount: 10
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 2
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 0
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 1
+      amount: 10
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 3
+      amount: 10
+  - enemiesToSpawn:
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 0
+      amount: 20
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 1
+      amount: 20
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 3
+      amount: 20
+    - enemy: {fileID: 2636995277425810465, guid: 0383de1b4ba976145a084009c0080c3c, type: 3}
+      pos: 2
+      amount: 20
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 2
+      amount: 20
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 0
+      amount: 20
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 1
+      amount: 20
+    - enemy: {fileID: 34428958849313512, guid: 4bc8f65569dbd4742bebbefb6e32a7f9, type: 3}
+      pos: 3
+      amount: 20
   _EnemiesParent: {fileID: 2104816310}
   _autoStartTimer: 8
   _timer: {fileID: 1202578781}

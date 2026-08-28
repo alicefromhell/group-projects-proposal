@@ -239,7 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9085689418a34e41a0c2c48955d5760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Turret
-  _fireRate: 1
+  _fireRate: 0.5
+  _damage: 60
   _BulletSpawnPos: {fileID: 5082258233186726367}
   _Shooter: {fileID: 7044106043935337826}
   _bulletPrefab: {fileID: 3943496813208738246, guid: d8236e3816fb899459c309df2bfdef36, type: 3}
