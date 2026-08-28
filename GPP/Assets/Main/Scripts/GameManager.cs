@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         CurrentState = SchrodingerState.Alive; // Initial state
 
         if (_deadVolume != null) _deadVolume.SetActive(CurrentState == SchrodingerState.Dead);
