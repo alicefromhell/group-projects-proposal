@@ -41,6 +41,9 @@ public class UpgradeUIScript : MonoBehaviour
         bool newActive = !_upgradeUI.activeSelf;
         _upgradeUI.SetActive(newActive);
 
+        Cursor.lockState = newActive ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = newActive;
+
         // Prompt visible only when in range AND UI is closed
         _promt.SetActive(!newActive);
     }

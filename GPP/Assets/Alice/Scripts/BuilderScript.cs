@@ -147,7 +147,8 @@ public class BuilderScript : MonoBehaviour
             CloseBuilder();
             return;
         }
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         _builderUI.SetActive(true);
         _buildCamera.gameObject.SetActive(true);
         _mainCamera.gameObject.SetActive(false);
@@ -156,7 +157,8 @@ public class BuilderScript : MonoBehaviour
 
     public void CloseBuilder()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         _builderUI.SetActive(false);
 
