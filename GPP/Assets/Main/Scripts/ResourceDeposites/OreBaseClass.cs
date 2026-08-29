@@ -66,6 +66,7 @@ public class OreBaseClass : MonoBehaviour
 
     public void Depletion()
     {
+        //SND: Money Pickup
         if (_moneySfx != null)
         {
             _moneySfx.Play(); 

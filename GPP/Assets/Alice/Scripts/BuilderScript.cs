@@ -29,6 +29,9 @@ public class BuilderScript : MonoBehaviour
     [SerializeField] private TMP_Text _quantumTurretAmountText;
     [SerializeField] private Image _quantumTurretImage;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _turretBuildSfx;
+    [SerializeField] private AudioSource _ui;
 
     public void BuildTurret(TurretType turretType, int spotIndex)
     {
@@ -72,6 +75,12 @@ public class BuilderScript : MonoBehaviour
                 return;
         }
         Instantiate(turretPrefab, _buildingSpots[spotIndex].transform.position, Quaternion.identity);
+
+        //SND: Build Turret
+        if (_turretBuildSfx != null)
+        {
+            _turretBuildSfx.Play();
+        }
     }
 
     public void RemoveTurret(int spotIndex) //missing logic to add turret back to inventory when removed
@@ -153,6 +162,12 @@ public class BuilderScript : MonoBehaviour
         _buildCamera.gameObject.SetActive(true);
         _mainCamera.gameObject.SetActive(false);
         //any other camera in scene should be disabled, this is a temporary solution until we have a camera manager
+
+        //SND: Open Builder
+        if (_ui != null)
+        {
+            _ui.Play();
+        }
     }
 
     public void CloseBuilder()

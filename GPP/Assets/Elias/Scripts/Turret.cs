@@ -11,6 +11,9 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _detectionRange = 55f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _turretShotSfx;
+
     private GameObject _enemyTarget;
     private float _fireCooldown = 0f;
 
@@ -42,6 +45,12 @@ public class Turret : MonoBehaviour
                 bulletObj.GetComponent<Bullet>().SetDamage(_damage);
 
                 _fireCooldown = 0f;
+
+                //SND: Turret Shot
+                if (_turretShotSfx != null)
+                {
+                    _turretShotSfx.Play();
+                }
             }
         } 
     }

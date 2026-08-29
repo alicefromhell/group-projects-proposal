@@ -6,6 +6,9 @@ public class Playergun : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _muzzle;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _playerWeaponSfx;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +33,11 @@ public class Playergun : MonoBehaviour
             bulletObj.GetComponent<PlayerBullet>().SetDirection(direction);
             Debug.Log("Bullet instantiated");
 
+            //SND: Player Weapon
+            if (_playerWeaponSfx != null)
+            {
+                _playerWeaponSfx.Play();
+            }
         }
     }
 }

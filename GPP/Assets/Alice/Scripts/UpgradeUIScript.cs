@@ -9,6 +9,8 @@ public class UpgradeUIScript : MonoBehaviour
     [SerializeField] private float _interactionRange = 20f;
     [SerializeField] private Transform _playerTransform;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _ui;
 
     private void Start()
     {
@@ -40,6 +42,12 @@ public class UpgradeUIScript : MonoBehaviour
         // Toggle UI
         bool newActive = !_upgradeUI.activeSelf;
         _upgradeUI.SetActive(newActive);
+
+        //SND: Open UI
+        if (_ui != null)
+        {
+            _ui.Play(); 
+        }
 
         Cursor.lockState = newActive ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = newActive;

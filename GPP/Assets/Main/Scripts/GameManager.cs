@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _transitionTime = 0.5f;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource _StateTransitionSfx;
+    [SerializeField] private AudioSource _stateTransitionSfx;
 
     private void Start()
     {
@@ -74,6 +74,9 @@ public class GameManager : MonoBehaviour
         }
 
         //SND: State Transition
-        _StateTransitionSfx.Play(); 
+        if (_stateTransitionSfx != null)
+        {
+            _stateTransitionSfx.Play();
+        }
     }
 }
