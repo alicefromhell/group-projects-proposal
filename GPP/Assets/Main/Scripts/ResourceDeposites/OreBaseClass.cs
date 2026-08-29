@@ -16,6 +16,9 @@ public class OreBaseClass : MonoBehaviour
     [SerializeField] private Slider _rechargeMeter;
     [SerializeField] private ParticleSystem _sparkles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _moneySfx;
+
     private int _charges;
     private float _currentChargeRate;
 
@@ -63,6 +66,11 @@ public class OreBaseClass : MonoBehaviour
 
     public void Depletion()
     {
+        if (_moneySfx != null)
+        {
+            _moneySfx.Play(); 
+        }
+
         _sparkles.gameObject.SetActive(false);
         _rechargeMeter.gameObject.SetActive(true);
         _charges--;
