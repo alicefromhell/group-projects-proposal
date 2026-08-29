@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using static UnityEditorInternal.ReorderableList;
 
 public enum SchrodingerState
 {
@@ -31,6 +33,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _deadVolume;
     [SerializeField] private GameObject _aliveVolume;
 
+    [Header("Snapshots")]
+    [SerializeField] private AudioMixerSnapshot _living;
+    [SerializeField] private AudioMixerSnapshot _dead;
+    [SerializeField] private float _transitionTime = 0.5f;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,5 +57,17 @@ public class GameManager : MonoBehaviour
         // Update volumes based on the current state
         if (_deadVolume != null) _deadVolume.SetActive(CurrentState == SchrodingerState.Dead);
         if (_aliveVolume != null) _aliveVolume.SetActive(CurrentState == SchrodingerState.Alive);
+
+        //Snapshots
+        if (CurrentState == SchrodingerState.Alive)
+        {
+            //Living Snapshot
+            _living.TransitionTo(_transitionTime);
+        }
+        else if (CurrentState == SchrodingerState.Dead)
+        {
+            //Dead Snapshot
+            _dead.TransitionTo(_transitionTime);
+        }
     }
 }
