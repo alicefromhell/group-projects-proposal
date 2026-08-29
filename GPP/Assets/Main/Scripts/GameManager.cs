@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioMixerSnapshot _dead;
     [SerializeField] private float _transitionTime = 0.5f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _StateTransitionSfx;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
         if (_deadVolume != null) _deadVolume.SetActive(CurrentState == SchrodingerState.Dead);
         if (_aliveVolume != null) _aliveVolume.SetActive(CurrentState == SchrodingerState.Alive);
 
-        //Snapshots
+        //Snapshot
         if (CurrentState == SchrodingerState.Alive)
         {
             //Living Snapshot
@@ -69,5 +72,8 @@ public class GameManager : MonoBehaviour
             //Dead Snapshot
             _dead.TransitionTo(_transitionTime);
         }
+
+        //SND: State Transition
+        _StateTransitionSfx.Play(); 
     }
 }
