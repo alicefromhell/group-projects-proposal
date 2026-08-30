@@ -16,6 +16,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _fallingSpeed = 10f;
     [SerializeField] private float _jumpHeight = 5f;
 
+    [Header("Audio Footsteps")]
+    [SerializeField] private AudioSource _footstepsSfx;
+
+    [SerializeField] private float _stepThreshold = 1.0f;
+
+    private Vector3 _previousPosition; 
+    private float _elapsedDistance = 0f;
+
+    private void Start()
+    {
+        //Start Tracking from player's position
+       _previousPosition = transform.position; 
+    }
     void Update()
     {
         Vector3 forward = _cameraTransform.forward;
@@ -47,6 +60,23 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.y = _verticalVelocity;
 
         _Controller.Move(moveDirection * Time.deltaTime);
+
+        //SND: Footsteps
+        Vector3 delta = transform.position - _previousPosition;
+        _elapsedDistance += delta.magnitude;
+
+        if (_Controller.isGrounded && moveDirection.sqrMagnitude > 0.01f)
+        {
+            if (_elapsedDistance >= _stepThreshold)
+            {
+                if (_footstepsSfx != null)
+                {
+                    _footstepsSfx.Play();
+                }
+                _elapsedDistance %= _stepThreshold;
+            }
+                _previousPosition = transform.position; 
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)

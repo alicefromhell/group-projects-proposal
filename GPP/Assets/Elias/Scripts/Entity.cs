@@ -6,6 +6,9 @@ public class Entity : Subject
     [SerializeField] private Slider _slider;
     [SerializeField] float _MaxHealth = 100;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _enemyDeadSfx;
+
     private void Start()
     {
         _slider.maxValue = _MaxHealth;
@@ -52,6 +55,14 @@ public class Entity : Subject
 
     public virtual void EntityKilled()
     {
+        _enemyDeadSfx.transform.SetParent(null, true);
+
+        //SND: Enemy Dead
+        if (_enemyDeadSfx != null)
+        {
+            _enemyDeadSfx.Play(); 
+        }
+
         Destroy(gameObject);
     }
 }

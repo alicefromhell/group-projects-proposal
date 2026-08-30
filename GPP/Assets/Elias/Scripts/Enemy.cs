@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private NavMeshAgent _agent;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _enemyAttackSfx; 
+
     //If we ever want to do infinite rounds we can use the cost to determine what to spawn
     [SerializeField] private int cost = 1;
 
@@ -73,6 +76,12 @@ public class Enemy : MonoBehaviour
         {
             target.GetComponent<Entity>().DoDamage(damage);
             cooldown = 0f;
+
+            //SND: Enemy Attack
+            if (_enemyAttackSfx != null)
+            {
+                _enemyAttackSfx.Play(); 
+            }
         }
     }
 }
