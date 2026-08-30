@@ -54,7 +54,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private void Update()
     {
         // Update the money text UI
-        _moneyText.text = $"Money: {GetResourceAmount(ResourceType.Money)}";
+        _moneyText.text = GetResourceAmount(ResourceType.Money).ToString();
     }
 
     private void Start()
